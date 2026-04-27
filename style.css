@@ -83,9 +83,9 @@ h3 { font-size: clamp(1.2rem, 2.5vw, 1.6rem); }
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 1000;
-  background: rgba(255,255,255,.92);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: #FFFFFF;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
   border-bottom: 1px solid rgba(0,0,0,.06);
   transition: box-shadow var(--transition);
 }
@@ -211,15 +211,21 @@ h3 { font-size: clamp(1.2rem, 2.5vw, 1.6rem); }
 .hero-image {
   flex: 0 0 420px;
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .hero-image img {
   border-radius: var(--radius);
   box-shadow: var(--shadow-lg);
+  position: relative;
+  z-index: 1;
 }
 .hero-image::before {
   content: '';
   position: absolute;
-  top: -16px; left: -16px;
+  top: 50%; left: 50%;
+  transform: translate(calc(-50% - 8px), calc(-50% - 8px));
   width: 100%; height: 100%;
   border: 2px solid var(--gold);
   border-radius: var(--radius);
@@ -761,6 +767,44 @@ h3 { font-size: clamp(1.2rem, 2.5vw, 1.6rem); }
   font-weight: 600;
 }
 
+/* Logo-based brand grid (homepage) */
+.brand-logo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-bottom: 40px;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.brand-logo-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 24px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(0,0,0,.06);
+  transition: transform var(--transition), box-shadow var(--transition);
+  min-height: 90px;
+}
+.brand-logo-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+.brand-logo-card img {
+  max-height: 50px;
+  max-width: 160px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  filter: grayscale(30%);
+  transition: filter var(--transition);
+}
+.brand-logo-card:hover img {
+  filter: grayscale(0%);
+}
+
 .industries-strip {
   display: flex;
   flex-wrap: wrap;
@@ -1149,6 +1193,7 @@ h3 { font-size: clamp(1.2rem, 2.5vw, 1.6rem); }
 
   /* New pages */
   .brand-grid { grid-template-columns: repeat(3, 1fr); }
+  .brand-logo-grid { grid-template-columns: repeat(2, 1fr); }
   .client-profiles { grid-template-columns: 1fr; }
   .industry-cards { grid-template-columns: repeat(2, 1fr); }
   .award-content { grid-template-columns: 1fr; }
@@ -1198,6 +1243,7 @@ h3 { font-size: clamp(1.2rem, 2.5vw, 1.6rem); }
 
   /* New pages */
   .brand-grid { grid-template-columns: repeat(2, 1fr); }
+  .brand-logo-grid { grid-template-columns: repeat(2, 1fr); }
   .industry-cards { grid-template-columns: 1fr; }
   .award-entry { flex-direction: column; gap: 12px; }
   .award-entry::before { display: none; }
